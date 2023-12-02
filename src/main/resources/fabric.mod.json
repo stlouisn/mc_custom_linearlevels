@@ -26,11 +26,7 @@
 		]
 	},
 	"mixins": [
-		"linearlevels.mixins.json",
-		{
-			"config": "linearlevels.client.mixins.json",
-			"environment": "client"
-		}
+		"linearlevels.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.0",
@@ -40,6 +36,5 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
 	}
 }
