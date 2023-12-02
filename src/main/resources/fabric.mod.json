@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "linearlevels",
+	"version": "${version}",
+	"name": "linearlevels",
+	"description": "Adds configuration options for experience levels",
+	"authors": [
+		"Partonetrain"
+	],
+	"contact": {
+		"homepage": "https://github.com/Partonetrain/linearlevels",
+		"sources": "https://github.com/Partonetrain/linearlevels"
+	},
+	"license": "MIT",
+	"icon": "assets/linearlevels/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"info.partonetrain.linearlevels.Linearlevels"
+		],
+		"client": [
+			"info.partonetrain.linearlevels.LinearlevelsClient"
+		],
+		"modmenu": [
+			"info.partonetrain.linearlevels.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"linearlevels.mixins.json",
+		{
+			"config": "linearlevels.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.0",
+		"minecraft": "~1.20.1",
+		"modmenu": ">=7.2.2",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
