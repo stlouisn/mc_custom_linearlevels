@@ -21,13 +21,18 @@ public class PlayerMixin {
 			cancellable = true)
 	private void linearlevels_getXpNeededForNextLevel(CallbackInfoReturnable<Integer> cir) {
 		LevelConfig cfg = AutoConfig.getConfigHolder(LevelConfig.class).getConfig();
-		if(cfg.curveMode)
-		{
-			cir.setReturnValue(experienceLevel == 0 ? cfg.baseXPForOneLevel : cfg.baseXPForOneLevel + (experienceLevel * cfg.curveModeMultiplier));
+		if(cfg.levelCap > 0 && experienceLevel >= cfg.levelCap){
+			cir.setReturnValue(cfg.cappedXpForNextLevel);
 		}
-		else
-		{
-			cir.setReturnValue(cfg.baseXPForOneLevel);
+		else{
+			if(cfg.curveMode)
+			{
+				cir.setReturnValue(experienceLevel == 0 ? cfg.baseXPForOneLevel : cfg.baseXPForOneLevel + (experienceLevel * cfg.curveModeMultiplier));
+			}
+			else
+			{
+				cir.setReturnValue(cfg.baseXPForOneLevel);
+			}
 		}
 
 		cir.cancel();

@@ -12,4 +12,8 @@ public class LevelConfig implements ConfigData {
     public int baseXPForOneLevel = 10;
     @Comment("The multiplier used in the Curve Mode calculation.")
     public int curveModeMultiplier = 2;
+    @Comment("The level at which the amount of XP required for the next level stops increasing. Set to 0 to disable.")
+    public int levelCap = 0;
+    @Comment("If levelCap > 0, the amount of experience required for the next level.")
+    public int cappedXpForNextLevel = 107;
 }
