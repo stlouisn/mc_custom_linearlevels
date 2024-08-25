@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": [
+    "${mod_authors}"
+  ],
+  "contact": {
+    "homepage": "${url_homepage}",
+    "sources": "${url_sources}",
+    "issues": "${url_issues}"
+  },
+  "license": "${mod_license}",
+  "icon": "assets/${mod_id}/icon.png",
+  "environment": "${mod_fabric_environment}",
+  "entrypoints": {
+    "main": [
+      "com.partonetrain.linearlevels.fabric.LinearLevels"
+    ],
+    "client": [
+      "com.partonetrain.linearlevels.fabric.LinearLevels"
+    ],
+    "modmenu": [
+      "com.partonetrain.linearlevels.fabric.config.ModMenu"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "${minecraft_version}",
+    "architectury": ">=${architectury_api_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "${url_discord}"
+      }
+    }
+  }
+}
