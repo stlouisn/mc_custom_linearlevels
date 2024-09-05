@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "${mod_id}",
   "version": "${mod_version}",
-  "name": "${mod_name}",
+  "name": "${mod_name} [C]",
   "description": "${mod_description}",
   "authors": [
     "${mod_authors}"
@@ -17,13 +17,7 @@
   "environment": "${mod_fabric_environment}",
   "entrypoints": {
     "main": [
-      "com.partonetrain.linearlevels.fabric.LinearLevels"
-    ],
-    "client": [
-      "com.partonetrain.linearlevels.fabric.LinearLevels"
-    ],
-    "modmenu": [
-      "com.partonetrain.linearlevels.fabric.config.ModMenu"
+      "maven_name.PackageName"
     ]
   },
   "mixins": [
@@ -32,12 +26,16 @@
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "minecraft": "${minecraft_version}",
-    "architectury": ">=${architectury_api_version}"
+    "architectury": ">=${architectury_api_version}",
+    "cloth-config": ">=${cloth_config_version}"
+  },
+  "recommends": {
+    "modmenu": "*"
   },
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.discord": "${url_discord}"
+        "modmenu.modrinth": "${url_modrinth}"
       }
     }
   }

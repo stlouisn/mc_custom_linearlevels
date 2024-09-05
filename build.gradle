@@ -1,77 +1,77 @@
 plugins {
-	id "dev.architectury.loom" version "1.7-SNAPSHOT" apply false  // https://github.com/architectury/architectury-loom
-	id "architectury-plugin" version "3.4-SNAPSHOT"                // https://github.com/architectury/architectury-plugin
-	id "com.gradleup.shadow" version "8.3.0" apply false           // https://gradleup.com/shadow/getting-started/#default-java-groovy-tasks
+  id "dev.architectury.loom" version "${architectury_loom_version}-SNAPSHOT" apply false
+  id "architectury-plugin" version "${architectury_plugin_version}-SNAPSHOT"
+  id "com.gradleup.shadow" version "${shadow_plugin_version}" apply false
+  id "java"
 }
 
 architectury {
-	minecraft = project.minecraft_version
+  minecraft = project.minecraft_version
 }
 
 allprojects {
-	group = rootProject.maven_group
-	version = rootProject.mod_version
+  group = project.maven_group
+  version = project.mod_version
 }
 
 subprojects {
 
-	apply plugin: 'dev.architectury.loom'
-	apply plugin: 'architectury-plugin'
+  apply plugin: "dev.architectury.loom"
+  apply plugin: "architectury-plugin"
+  apply plugin: "java"
 
-	repositories {
+  repositories {
 
-		// Mod Menu
-		maven { url = "https://maven.terraformersmc.com/" }
+    // Mod Menu
+    maven { url = "https://maven.terraformersmc.com/" }
 
-	}
+  }
 
-	dependencies {
+  dependencies {
 
-		minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
-//		// Official Mojang Mappings
-//		mappings(loom.officialMojangMappings())
+    // Yarn + NeoPatch Mappings
+    mappings loom.layered {
+      it.mappings("net.fabricmc:yarn:$rootProject.yarn_mappings:v2")
+      it.mappings("dev.architectury:yarn-mappings-patch-neoforge:$rootProject.neoforge_mappings")
+    }
 
-        // Yarn + NeoPatch Mappings
-        mappings loom.layered {
-            it.mappings("net.fabricmc:yarn:$rootProject.yarn_mappings:v2")
-            it.mappings("dev.architectury:yarn-mappings-patch-neoforge:$rootProject.neoforge_mappings")
-        }
+  }
 
-	}
+  java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 
-	java {
-		sourceCompatibility = JavaVersion.VERSION_21
-		targetCompatibility = JavaVersion.VERSION_21
+    manifest {
+      attributes([
+          "Specification-Title"     : project.mod_id,
+          "Specification-Vendor"    : project.mod_authors,
+          "Specification-Version"   : "1",
+          "Implementation-Title"    : project.mod_name,
+          "Implementation-Version"  : project.mod_version,
+          "Implementation-Vendor"   : project.mod_authors,
+          "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+      ])
+    }
+  }
 
-		manifest {
-			attributes([
-					"Specification-Title"     : project.mod_id,
-					"Specification-Vendor"    : project.mod_authors,
-					"Specification-Version"   : "1",
-					"Implementation-Title"    : project.mod_name,
-					"Implementation-Version"  : project.mod_version,
-					"Implementation-Vendor"   : project.mod_authors,
-					"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-			])
-		}
-	}
-
-	tasks.withType(JavaCompile).configureEach {
+  tasks.withType(JavaCompile).configureEach {
 		it.options.release = 21
-	}
+		it.options.encoding = "UTF-8"
+  }
 
-	processResources {
-		def stringProperties = providers.gradlePropertiesPrefixedBy('').get()
-		stringProperties.each { inputs.property(it.key, it.value) }
+  processResources {
+    def stringProperties = providers.gradlePropertiesPrefixedBy('').get()
+    stringProperties.each { inputs.property(it.key, it.value) }
 
-		["fabric.mod.json", "META-INF/neoforge.mods.toml"].each {
-			filesMatching(it) {
-				expand(stringProperties) {
-					escapeBackslash = true
-				}
-			}
-		}
-	}
+    ["fabric.mod.json", "META-INF/neoforge.mods.toml"].each {
+      filesMatching(it) {
+        expand(stringProperties) {
+          escapeBackslash = true
+        }
+      }
+    }
+  }
 
 }
