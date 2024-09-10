@@ -1,0 +1,33 @@
+package dev.linearlevels;
+
+import dev.linearlevels.config.LinearLevelsConfigData;
+import me.shedaniel.autoconfig.AutoConfig;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@SuppressWarnings("unused")
+@Mod(Constants.MOD_ID)
+public class LinearLevels {
+
+  public static final Logger LOGGER = LoggerFactory.getLogger(Constants.MOD_ID);
+
+  public LinearLevels(IEventBus modBus) {
+    modBus.addListener(this::commonSetup);
+    modBus.addListener(this::clientSetup);
+    ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (client, parent) -> AutoConfig.getConfigScreen(LinearLevelsConfigData.class, parent).get());
+  }
+
+  private void commonSetup(FMLCommonSetupEvent event) {
+    event.enqueueWork(LinearLevelsConfig::configInit);
+  }
+
+  private void clientSetup(FMLClientSetupEvent event) {
+    event.enqueueWork(LinearLevelsClient::clientInit);
+  }
+}
