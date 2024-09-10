@@ -6,7 +6,7 @@ import dev.linearlevels.config.StringSetGuiProvider;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.util.Identifier;
 
-public class LinearLevelsClient {
+public final class LinearLevelsClient {
 
   public static void clientInit() {
     StringSetGuiProvider<Identifier> guiProvider = new StringSetGuiProvider<>(Identifier.class, Identifier::of);
