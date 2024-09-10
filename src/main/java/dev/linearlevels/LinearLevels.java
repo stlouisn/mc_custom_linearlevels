@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("unused")
 @Mod(Constants.MOD_ID)
-public class LinearLevels {
+public final class LinearLevels {
 
   public static final Logger LOGGER = LoggerFactory.getLogger(Constants.MOD_ID);
 
