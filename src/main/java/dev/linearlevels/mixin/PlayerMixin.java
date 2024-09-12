@@ -18,7 +18,6 @@ public class PlayerMixin {
 
   @Inject(at = @At("HEAD"), method = "getNextLevelExperience()I", cancellable = true)
   private void linearlevels$getXpNeededForNextLevel(CallbackInfoReturnable<Integer> cir) {
-    // LinearLevelsConfigData cfg = AutoConfig.getConfigHolder(LinearLevelsConfigData.class).getConfig();
     if (ModConfig.CONFIG.curveMode) {
       cir.setReturnValue(experienceLevel == 0 ? ModConfig.CONFIG.baseXPForOneLevel : ModConfig.CONFIG.baseXPForOneLevel + (experienceLevel * ModConfig.CONFIG.curveModeMultiplier));
     }
