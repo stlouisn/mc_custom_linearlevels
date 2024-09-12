@@ -1,19 +1,21 @@
 package dev.linearlevels.config;
 
+import dev.linearlevels.Constants;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.Tooltip;
 
-@Config(name = "linearlevels")
-public class LinearLevelsConfigData implements ConfigData {
+@Config(name = Constants.MOD_ID)
+public class ModConfigData implements ConfigData {
 
-    @ConfigEntry.Gui.Tooltip
+    @Tooltip
     public boolean curveMode = true;
 
-    @ConfigEntry.Gui.Tooltip
+    @Tooltip
     public int baseXPForOneLevel = 50;
 
-    @ConfigEntry.Gui.Tooltip
+    @Tooltip
     public int curveModeMultiplier = 1;
 
 }
