@@ -1,8 +1,6 @@
 package dev.linearlevels.mixin;
 
 import dev.linearlevels.config.ModConfig;
-import dev.linearlevels.config.ModConfigData;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

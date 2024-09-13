@@ -2,6 +2,7 @@ package dev.linearlevels;
 
 import dev.linearlevels.config.ModConfig;
 import dev.linearlevels.config.ModConfigData;
+import dev.linearlevels.utils.ModConstants;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
@@ -12,12 +13,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("unused")
-@Mod(Constants.MOD_ID)
+@Mod(ModConstants.MOD_ID)
 public final class LinearLevels {
 
-  public static final Logger LOGGER = LoggerFactory.getLogger(Constants.MOD_ID);
+  public static final Logger LOGGER = LoggerFactory.getLogger(ModConstants.MOD_ID);
 
-  public ModName(IEventBus modBus) {
+  public LinearLevels(IEventBus modBus) {
     modBus.addListener(this::commonSetup);
     ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (client, parent) -> AutoConfig.getConfigScreen(ModConfigData.class, parent).get());
   }
