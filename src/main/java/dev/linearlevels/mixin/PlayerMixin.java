@@ -1,6 +1,6 @@
 package dev.linearlevels.mixin;
 
-import dev.linearlevels.config.ModConfig;
+import dev.linearlevels.config.ConfigHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,11 +16,11 @@ public class PlayerMixin {
 
   @Inject(at = @At("HEAD"), method = "getNextLevelExperience()I", cancellable = true)
   private void linearlevels$getXpNeededForNextLevel(CallbackInfoReturnable<Integer> cir) {
-    if (ModConfig.CONFIG.curveMode) {
-      cir.setReturnValue(experienceLevel == 0 ? ModConfig.CONFIG.baseXPForOneLevel : ModConfig.CONFIG.baseXPForOneLevel + (experienceLevel * ModConfig.CONFIG.curveModeMultiplier));
+    if (ConfigHandler.curveMode.get()) {
+      cir.setReturnValue(experienceLevel == 0 ? ConfigHandler.baseXPForOneLevel.get() : ConfigHandler.baseXPForOneLevel.get() + (experienceLevel * ConfigHandler.curveModeMultiplier.get()));
     }
     else {
-      cir.setReturnValue(ModConfig.CONFIG.baseXPForOneLevel);
+      cir.setReturnValue(ConfigHandler.baseXPForOneLevel.get());
     }
     cir.cancel();
   }
