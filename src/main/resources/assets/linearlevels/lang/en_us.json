@@ -2,10 +2,10 @@
   "linearlevels.configuration.title": "Linear Levels",
   "linearlevels.configuration.section.linearlevels.common.toml": "Common Settings",
   "linearlevels.configuration.section.linearlevels.common.toml.title": "Linear Levels Configuration",
-  "linearlevels.configuration.curveMode": "Curve Mode",
-  "linearlevels.configuration.curveMode.tooltip": "Increases experience required per level. \n\n= (level * multiplier) + base xp",
   "linearlevels.configuration.baseXPForOneLevel": "Base Experience",
   "linearlevels.configuration.baseXPForOneLevel.tooltip": "The base amount of experience required for each level.",
+  "linearlevels.configuration.curveMode": "Curve Mode",
+  "linearlevels.configuration.curveMode.tooltip": "Use curved mode to increase experience required per level.\n\nExperience + (Level * Multiplier)",
   "linearlevels.configuration.curveModeMultiplier": "Curve Multiplier",
   "linearlevels.configuration.curveModeMultiplier.tooltip": "The multiplier used in the Curve Mode calculation."
 }
